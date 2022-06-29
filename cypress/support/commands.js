@@ -68,3 +68,63 @@ Cypress.Commands.add('postCharacter', function (payLoad) {
         return response
     })
 })
+
+// GET requisicao que testa o cadastro de personagens
+Cypress.Commands.add('getCharacter', function () {
+    cy.api({
+        method: 'GET',
+        url: '/characters',
+        headers: {
+            Authorization: Cypress.env('token') //o valor da variavel foi definida atrazes do setToken
+        },
+        failOnStatusCode: false
+    }).then(function (response) {
+        return response
+    })
+})
+
+Cypress.Commands.add('searchCharacter', function (characterName) {
+    cy.api({
+        method: 'GET',
+        url: '/characters',
+        qs:{name: characterName},
+        headers: {
+            Authorization: Cypress.env('token') //o valor da variavel foi definida atrazes do setToken
+        },
+        failOnStatusCode: false
+    }).then(function (response) {
+        return response
+    })
+})
+
+Cypress.Commands.add('getCharacterById', function (characterId) {
+    cy.api({
+        method: 'GET',
+        url: '/characters/'+ characterId,
+        headers: {
+            Authorization: Cypress.env('token') //o valor da variavel foi definida atrazes do setToken
+        },
+        failOnStatusCode: false
+    }).then(function (response) {
+        return response
+    })
+})
+
+Cypress.Commands.add('deleteCharacterById', function (characterId) {
+    cy.api({
+        method: 'DELETE',
+        url: '/characters/'+ characterId,
+        headers: {
+            Authorization: Cypress.env('token') //o valor da variavel foi definida atrazes do setToken
+        },
+        failOnStatusCode: false
+    }).then(function (response) {
+        return response
+    })
+})
+
+Cypress.Commands.add('populateCharacters', function (characters) {
+    characters.forEach(function (c) {
+        cy.postCharacter(c)
+    })
+})

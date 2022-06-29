@@ -1,3 +1,4 @@
 {
-    "baseUrl": "https://marvel-qa-cademy.herokuapp.com"
+    "baseUrl": "https://marvel-qa-cademy.herokuapp.com",
+    "video": false
 }
